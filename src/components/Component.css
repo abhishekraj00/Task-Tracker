@@ -1,0 +1,30 @@
+
+
+#button-addon2 {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.for-boder {
+  border: none;
+  cursor: pointer;
+}
+
+table{
+    width: 500px;
+}
+
+.form-control:focus {
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+input{
+    background: rgba(226, 226, 226, 0.308) !important;
+    border: none !important;
+}
+
+
+
+
