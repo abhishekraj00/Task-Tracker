@@ -40,7 +40,6 @@ function TaskAdd() {
     addDataRef.current.value = taskList[event.target.id].task;
     setEditToggel(true);
     setID(event.target.id);
-    event.prevetDefault();
   };
 
   // when edit get call this function take place at add Task
