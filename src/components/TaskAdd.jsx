@@ -16,7 +16,7 @@ function TaskAdd() {
       setTaskList([
         ...taskList,
         {
-          id: taskList.length + 1,
+          id: '📝',
           task: addDataRef.current.value,
           taskTime: currentTime,
           style: {},
@@ -48,7 +48,7 @@ function TaskAdd() {
       ...taskList[getId],
       task: addDataRef.current.value,
       taskTime: currentTime,
-      id: `${+getId + 1} ✏️`,
+      id: `✏️`,
     };
     setEditToggel(false);
     addDataRef.current.value = "";
@@ -57,12 +57,14 @@ function TaskAdd() {
   const deleteTask = (event) => {
 
     let newTaskList =  taskList.filter((e, idk) => event.target.id !== `${idk}`)
-    let updateIndex = newTaskList.map((e,i)=>{
+    // let updateIndex = newTaskList.map((e,i)=>{
 
-       return {...e,id : i+1}
+    //     if(e.id == i)
+
+    //    return {...e,id : i+1}
         
-    })
-    setTaskList(updateIndex);
+    // })
+    setTaskList(newTaskList);
   };
 
   return (
@@ -89,7 +91,7 @@ function TaskAdd() {
       <table className="table">
         <thead className="table-dark">
           <tr>
-            <th>S.No</th>
+            <th>Edit Status</th>
             <th>Time</th>
             <th>Task</th>
 
