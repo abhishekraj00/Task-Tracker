@@ -62,7 +62,6 @@ function TaskAdd() {
        return {...e,id : i+1}
         
     })
-    console.log(updateIndex)
     setTaskList(updateIndex);
   };
 
