@@ -11,8 +11,8 @@ function TaskAdd() {
   const [getId, setID] = useState("");
 
   // task add logic
-  const handleAdd = () => {
-    console.log(taskList);
+  const handleAdd = (event) => {
+
     if (addDataRef.current.value) {
       setTaskList([
         ...taskList,
@@ -44,14 +44,16 @@ function TaskAdd() {
 
   // when edit get call this function take place at add Task
   const handelEditAdd = (event) => {
-    taskList[getId] = { ...taskList[getId], task: addDataRef.current.value };
+    taskList[getId] = { ...taskList[getId], task: addDataRef.current.value,taskTime: currentTime, };
     setEditToggel(false);
     addDataRef.current.value = "";
   };
 
   return (
     <>
+      <h1 className="display-1 for-bold">TO DO APP 📑</h1><br/>
       <div className="input-group mb-3">
+        
         <input
           type="text"
           className="form-control"
@@ -59,10 +61,11 @@ function TaskAdd() {
           ref={addDataRef}
         />
         <button
-          className="btn btn-dark"
+          className="btn btn-dark for-focus"
           type="button"
           id="button-addon2"
           onClick={forEditToggel ? handelEditAdd : handleAdd}
+          
         >
           {forEditToggel ? "✏️" : "+"}
         </button>
@@ -134,7 +137,7 @@ function TaskAdd() {
                   id={i}
                   onClick={(event) =>
                     setTaskList(
-                      taskList.filter((e, id) => event.target.id != id)
+                      taskList.filter((e, id) => event.target.id !== `${id}`)
                     )
                   }
                 >
