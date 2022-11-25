@@ -12,11 +12,11 @@ function TaskAdd() {
 
   // task add logic
   const handleAdd = (event) => {
-
     if (addDataRef.current.value) {
       setTaskList([
         ...taskList,
         {
+          id: taskList.length + 1,
           task: addDataRef.current.value,
           taskTime: currentTime,
           style: {},
@@ -44,16 +44,33 @@ function TaskAdd() {
 
   // when edit get call this function take place at add Task
   const handelEditAdd = (event) => {
-    taskList[getId] = { ...taskList[getId], task: addDataRef.current.value,taskTime: currentTime, };
+    taskList[getId] = {
+      ...taskList[getId],
+      task: addDataRef.current.value,
+      taskTime: currentTime,
+      id: `${+getId + 1} ✏️`,
+    };
     setEditToggel(false);
     addDataRef.current.value = "";
   };
 
+  const deleteTask = (event) => {
+
+    let newTaskList =  taskList.filter((e, idk) => event.target.id !== `${idk}`)
+    let updateIndex = newTaskList.map((e,i)=>{
+
+       return {...e,id : i+1}
+        
+    })
+    console.log(updateIndex)
+    setTaskList(updateIndex);
+  };
+
   return (
     <>
-      <h1 className="display-1 for-bold">TO DO APP 📑</h1><br/>
+      <h1 className="display-1 for-bold">TO DO APP 📑</h1>
+      <br />
       <div className="input-group mb-3">
-        
         <input
           type="text"
           className="form-control"
@@ -65,7 +82,6 @@ function TaskAdd() {
           type="button"
           id="button-addon2"
           onClick={forEditToggel ? handelEditAdd : handleAdd}
-          
         >
           {forEditToggel ? "✏️" : "+"}
         </button>
@@ -89,7 +105,7 @@ function TaskAdd() {
             <tr className={e.cName} key={`keyLi${i}`} style={e.style}>
               {/* All Task list Button */}
 
-              <td>{i + 1}</td>
+              <td>{e.id}</td>
               <td>{e.taskTime}</td>
               <td>{e.task}</td>
 
@@ -111,7 +127,7 @@ function TaskAdd() {
                     setTaskList([...taskList]);
                   }}
                 >
-                  {e.status ? '✅' : '⌛'}
+                  {e.status ? "✅" : "⌛"}
                 </button>
               </td>
 
@@ -124,7 +140,7 @@ function TaskAdd() {
                   id={i}
                   onClick={handelEdit}
                 >
-                 ✏️
+                  ✏️
                 </button>
               </td>
 
@@ -135,11 +151,7 @@ function TaskAdd() {
                   className="btn btn-outline-danger for-boder"
                   key={`key${i}`}
                   id={i}
-                  onClick={(event) =>
-                    setTaskList(
-                      taskList.filter((e, id) => event.target.id !== `${id}`)
-                    )
-                  }
+                  onClick={deleteTask}
                 >
                   🗑️
                 </button>
