@@ -7,6 +7,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   background: rgb(197, 197, 197);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 code {
@@ -20,8 +24,10 @@ code {
   align-items: center;
 
   margin-top: 20px;
+
+  max-width: 600px;
 }
 
-input:focus{
+input:focus {
   outline: none !important;
 }

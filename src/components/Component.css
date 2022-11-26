@@ -10,9 +10,6 @@
   cursor: pointer;
 }
 
-table{
-    width: 500px;
-}
 
 .form-control:focus {
     border-color: #ff4d00;
@@ -30,6 +27,9 @@ input{
 
 }
 
+.nav-border{
 
+  border-radius: 10px;
+  max-height: 40px;
 
-
+}

@@ -1,14 +1,9 @@
 import React, { useRef, useState } from "react";
 
 import "./Component.css";
+import Navbar from "./Navbar";
 
-function TaskAdd() {
-  const currentTime = new Date().toLocaleTimeString();
-  const [taskList, setTaskList] = useState([]);
-  const addDataRef = useRef(); // for input data access
-
-  const [forEditToggel, setEditToggel] = useState(false); //
-  const [getId, setID] = useState("");
+function TaskAdd({currentTime,taskList,setTaskList,addDataRef,forEditToggel,setEditToggel,getId,setID ,deleteTt,setDelete}) {
 
   // task add logic
   const handleAdd = (event) => {
@@ -16,7 +11,7 @@ function TaskAdd() {
       setTaskList([
         ...taskList,
         {
-          id: '📝',
+          id: "📝",
           task: addDataRef.current.value,
           taskTime: currentTime,
           style: {},
@@ -55,15 +50,8 @@ function TaskAdd() {
   };
 
   const deleteTask = (event) => {
-
-    let newTaskList =  taskList.filter((e, idk) => event.target.id !== `${idk}`)
-    // let updateIndex = newTaskList.map((e,i)=>{
-
-    //     if(e.id == i)
-
-    //    return {...e,id : i+1}
-        
-    // })
+    let newTaskList = taskList.filter((e, idk) => event.target.id !== `${idk}`);
+    setDelete(taskList.filter((e, idk) => event.target.id === `${idk}`))
     setTaskList(newTaskList);
   };
 
@@ -71,6 +59,9 @@ function TaskAdd() {
     <>
       <h1 className="display-1 for-bold">TO DO APP 📑</h1>
       <br />
+
+      <Navbar/><br/>
+
       <div className="input-group mb-3">
         <input
           type="text"
@@ -86,9 +77,9 @@ function TaskAdd() {
         >
           {forEditToggel ? "✏️" : "+"}
         </button>
-      </div>
+      </div><br/>
 
-      <table className="table">
+      <table className="table ">
         <thead className="table-dark">
           <tr>
             <th>Edit Status</th>
