@@ -15,8 +15,6 @@ function App() {
 
   const [deleteTt, setDelete] = useState([]);
 
-  
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -39,50 +37,15 @@ function App() {
     },
     {
       path: "/alltask",
-      element: (
-        <DeletTask
-          currentTime={currentTime}
-          taskList={taskList}
-          setTaskList={setTaskList}
-          addDataRef={addDataRef}
-          forEditToggel={forEditToggel}
-          setEditToggel={setEditToggel}
-          getId={getId}
-          setID={setID}
-          deleteTt={deleteTt}
-          setDelete={setDelete}
-        />
-      ),
+      element: <DeletTask deleteTt={deleteTt} />,
     },
     {
       path: "/Done",
-      element: (
-        <Done
-          currentTime={currentTime}
-          taskList={taskList}
-          setTaskList={setTaskList}
-          addDataRef={addDataRef}
-          forEditToggel={forEditToggel}
-          setEditToggel={setEditToggel}
-          getId={getId}
-          setID={setID}
-        />
-      ),
+      element: <Done taskList={taskList} />,
     },
     {
       path: "/Pending",
-      element: (
-        <Pending
-          currentTime={currentTime}
-          taskList={taskList}
-          setTaskList={setTaskList}
-          addDataRef={addDataRef}
-          forEditToggel={forEditToggel}
-          setEditToggel={setEditToggel}
-          getId={getId}
-          setID={setID}
-        />
-      ),
+      element: <Pending taskList={taskList} />,
     },
   ]);
 

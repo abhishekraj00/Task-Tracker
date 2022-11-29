@@ -11,6 +11,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  width: 100vmax;
+
 }
 
 code {
@@ -24,10 +27,20 @@ code {
   align-items: center;
 
   margin-top: 20px;
-
-  max-width: 600px;
+  /* max-width: 769px; */
 }
 
-input:focus {
-  outline: none !important;
+/* laptop and over size */
+
+@media only screen and (min-width: 769px) {  
+  #bootstarap-overlay-navbaar{
+    width: 750px;
+  }  
 }
+
+
+
+
+
+
+
