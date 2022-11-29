@@ -1,23 +1,13 @@
 import React from "react";
 import Navbar from "./Navbar";
 
-function DeletTask({
-  currentTime,
-  taskList,
-  setTaskList,
-  addDataRef,
-  forEditToggel,
-  setEditToggel,
-  getId,
-  setID,
-  dele,
-  deleteTt
-}) {
+function DeletTask({ deleteTt }) {
   return (
     <div>
-      <h1 className="display-1 for-bold">TO DO APP 📑</h1>
+      <h1 className="display-1 for-bold">Task Tacker 📑</h1>
       <br />
-      <Navbar /><br/>
+      <Navbar />
+      <br />
       <h3>Deleted Task</h3>
       <table className="table ">
         <thead className="table-dark">

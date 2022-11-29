@@ -1,28 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 
-function Done({
-  currentTime,
-  taskList,
-  setTaskList,
-  addDataRef,
-  forEditToggel,
-  setEditToggel,
-  getId,
-  setID,
-}) {
-const [Done, setDone] = useState([]);
+function Done({ taskList }) {
+  const [Done, setDone] = useState([]);
 
   useEffect(() => {
     setDone(taskList.filter((e) => e.status === true));
   }, [Done]);
 
-
   return (
     <div>
-      <h1 className="display-1 for-bold">TO DO APP 📑</h1>
+      <h1 className="display-1 for-bold">Task Tacker 📑</h1>
       <br />
-      <Navbar /><br/>
+      <Navbar />
+      <br />
       <h3>Done Task</h3>
       <table className="table ">
         <thead className="table-dark">

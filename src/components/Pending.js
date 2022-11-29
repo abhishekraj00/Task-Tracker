@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 
-function Pending({
-  currentTime,
-  taskList,
-  setTaskList,
-  addDataRef,
-  forEditToggel,
-  setEditToggel,
-  getId,
-  setID,
-}) {
+function Pending({ taskList }) {
   const [pending, setPending] = useState([]);
 
   useEffect(() => {
@@ -19,9 +10,10 @@ function Pending({
 
   return (
     <div>
-      <h1 className="display-1 for-bold">TO DO APP 📑</h1>
+      <h1 className="display-1 for-bold">Task Tacker 📑</h1>
       <br />
-      <Navbar /><br/>
+      <Navbar />
+      <br />
       <h3>Pending Task</h3>
 
       <table className="table ">
