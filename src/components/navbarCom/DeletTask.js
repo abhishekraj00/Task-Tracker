@@ -13,7 +13,8 @@ function DeletTask({ deleteTt }) {
         <thead className="table-dark">
           <tr>
             <th>S.No</th>
-            <th>Time</th>
+            <th>Assig Day</th>
+            <th>Assig Time</th>
             <th>Task</th>
           </tr>
         </thead>
@@ -22,7 +23,8 @@ function DeletTask({ deleteTt }) {
           {deleteTt.map((e, i) => (
             <tr key={`DoneKey${i}`}>
               <td>{i + 1}</td>
-              <td>{e.taskTime}</td>
+              <td>{e.startDay}</td>
+              <td>{e.startTime}</td>
               <td>{e.task}</td>
             </tr>
           ))}

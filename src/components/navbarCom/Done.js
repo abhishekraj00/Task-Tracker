@@ -6,7 +6,7 @@ function Done({ taskList }) {
 
   useEffect(() => {
     setDone(taskList.filter((e) => e.status === true));
-  }, [Done]);
+  }, []);
 
   return (
     <div>
@@ -19,7 +19,10 @@ function Done({ taskList }) {
         <thead className="table-dark">
           <tr>
             <th>S.No</th>
-            <th>Time</th>
+            <th>Assign Day</th>
+            <th>Assign Time</th>
+            <th>Done Day</th>
+            <th>Done Time</th>
             <th>Task</th>
           </tr>
         </thead>
@@ -28,7 +31,10 @@ function Done({ taskList }) {
           {Done.map((e, i) => (
             <tr key={`DoneKey${i}`}>
               <td>{i + 1}</td>
-              <td>{e.taskTime}</td>
+              <td>{e.startDay}</td>
+              <td>{e.startTime}</td>
+              <td>{e.doneDay}</td>
+              <td>{e.doneTime}</td>
               <td>{e.task}</td>
             </tr>
           ))}

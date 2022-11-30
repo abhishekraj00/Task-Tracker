@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Heading from "../Heading";
 import Navbar from "./Navbar";
 
 function Pending({ taskList }) {
@@ -6,21 +7,19 @@ function Pending({ taskList }) {
 
   useEffect(() => {
     setPending(taskList.filter((e) => e.status === false));
-  }, [pending]);
+  }, []);
 
   return (
     <div>
-      <h1 className="display-1 for-bold">Task Tacker 📑</h1>
-      <br />
-      <Navbar />
-      <br />
+      <Heading/>
       <h3>Pending Task</h3>
 
       <table className="table ">
         <thead className="table-dark">
           <tr>
             <th>S.No</th>
-            <th>Time</th>
+            <th>Assign Day</th>
+            <th>Assign Time</th>
             <th>Task</th>
           </tr>
         </thead>
@@ -29,7 +28,8 @@ function Pending({ taskList }) {
           {pending.map((e, i) => (
             <tr key={`PendingKey${i}`}>
               <td>{i + 1}</td>
-              <td>{e.taskTime}</td>
+              <td>{e.startDay}</td>
+              <td>{e.startTime}</td>
               <td>{e.task}</td>
             </tr>
           ))}

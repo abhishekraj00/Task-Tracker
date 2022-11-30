@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 
 import "./Component.css";
-import Navbar from "./Navbar";
-import TimerClock from "./TimerClock";
+import Heading from "./Heading";
+import TimerClock from "./TimerClock"; // countDown Component with take value in props and start timer
 
 function TaskAdd({
   currentTime,
@@ -14,13 +14,14 @@ function TaskAdd({
   getId,
   setID,
   setDelete,
+  currentDate,
 }) {
   const addDataRef2 = useRef();
   const addDataRef3 = useRef();
   let convertTimeInSec;
 
-  const [timeType, setTimeType] = useState("sec");
-  const [priorityData, setPrority] = useState("Higher");
+  const [timeType, setTimeType] = useState("min");
+  const [priorityData, setPrority] = useState("High");
 
   // task add logic
   const handleAdd = (event) => {
@@ -54,6 +55,11 @@ function TaskAdd({
           priority: addDataRef3.current.value,
           clockTimer: convertTimeInSec,
           timeType: timeType,
+          startTime: currentTime,
+          startDay: currentDate,
+          doneDay: "",
+          doneTime: "⌛",
+          
         },
       ]);
       addDataRef.current.value = "";
@@ -106,35 +112,31 @@ function TaskAdd({
     addDataRef3.current.value = "";
   };
 
+  const handelDone = (e) => {
+    taskList[e.target.id] = {
+      ...taskList[e.target.id],
+      style: { textDecoration: "line-through" },
+      edit: true,
+      status: true,
+      cName: "table-success",
+      doneDay: currentDate,
+      doneTime: currentTime,
+    };
+    setTaskList([...taskList]);
+  };
+
   const deleteTask = (event) => {
-    //
+
     let newTaskList = taskList.filter((e, idk) => event.target.id !== `${idk}`);
 
     setDelete(taskList.filter((e, idk) => event.target.id === `${idk}`));
-    setTaskList(newTaskList);
-  };
 
-  const getTaskTimefn = (event) => {
-    if (event.target.value === "Custom") {
-      addDataRef2.current.value = "";
-      addDataRef2.current.placeholder = "Type Custom (hr)";
-    } else {
-      addDataRef2.current.value = event.target.value;
-    }
-  };
-
-  const getPriorityTimefn = (event) => {
-    addDataRef3.current.value = event.target.value;
+    setTaskList([...newTaskList]);
   };
 
   return (
     <>
-      <h1 className="display-1 for-bold">Task Tacker 📑</h1>
-      <br />
-
-      <Navbar />
-      <br />
-      <br />
+      <Heading />
 
       <form>
         {/* ---- Second Input for task timeing ---------- */}
@@ -156,8 +158,8 @@ function TaskAdd({
               id="button-addon2"
               onClick={(e) => setTimeType(e.target.value)}
             >
-              <option>sec</option>
               <option>min</option>
+              <option>sec</option>
               <option>hr</option>
               <option>days</option>
             </select>
@@ -212,9 +214,10 @@ function TaskAdd({
         <thead className="table-dark">
           <tr>
             <th>S.No</th>
+            <th>Day</th>
+            <th>Time</th>
             <th>Task</th>
             <th>Priority</th>
-            <th>Time</th>
             <th className="timer-box">Time Limit</th>
             <th>Status</th>
             <th>Edit</th>
@@ -227,15 +230,17 @@ function TaskAdd({
             <tr className={e.cName} key={`keyLi${i}`} style={e.style}>
               {/* All Task list Button */}
               <td>{i + 1}</td>
+              <td>{e.startDay}</td>
+              <td>{e.startTime}</td>
               <td style={{ maxWidth: "300px", overflowWrap: "break-word" }}>
                 {e.task}
               </td>
               <td>{e.priority}</td>
-              <td>{e.taskTime}</td>
 
               <td>
                 <div className="timer-box">
-                  {e.getTaskTime} <TimerClock clock={e.clockTimer} />
+                  {e.getTaskTime}
+                  {e.cName ? "" : <TimerClock clock={e.clockTimer} />}
                 </div>
               </td>
 
@@ -246,18 +251,9 @@ function TaskAdd({
                   className="btn btn-outline-success for-boder"
                   disabled={e.status}
                   id={i}
-                  onClick={(e) => {
-                    taskList[e.target.id] = {
-                      ...taskList[e.target.id],
-                      style: { textDecoration: "line-through" },
-                      edit: true,
-                      status: true,
-                      cName: "table-success",
-                    };
-                    setTaskList([...taskList]);
-                  }}
+                  onClick={handelDone}
                 >
-                  {e.status ? "✅" : "⌛"}
+                  {e.status ? "✅😃" : "⌛"}
                 </button>
               </td>
               {/* Edit Button */}
