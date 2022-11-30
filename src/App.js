@@ -1,12 +1,14 @@
 import React, { useRef, useState } from "react";
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 import TaskAdd from "./components/TaskAdd";
-import Done from "./components/Done";
-import Pending from "./components/Pending";
-import DeletTask from "./components/DeletTask";
+import Done from "./components/navbarCom/Done";
+import Pending from "./components/navbarCom/Pending";
+import DeletTask from "./components/navbarCom/DeletTask";
 
 function App() {
   const currentTime = new Date().toLocaleTimeString();
+  const currentDate = new Date().toLocaleDateString();
+
   const [taskList, setTaskList] = useState([]);
   const addDataRef = useRef(); // for input data access
 
@@ -21,6 +23,7 @@ function App() {
       element: (
         <div>
           <TaskAdd
+            currentDate ={currentDate}
             currentTime={currentTime}
             taskList={taskList}
             setTaskList={setTaskList}
